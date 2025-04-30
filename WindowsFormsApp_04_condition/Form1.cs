@@ -10,6 +10,16 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp_04_condition
 {
+    enum Days
+    {
+        Monday,
+        Tuesday,
+        Wednesday,
+        Thursday,
+        Friday,
+        Saturday,
+        Sunday
+    }
     public partial class Form1 : Form
     {
         public Form1()
@@ -153,6 +163,43 @@ namespace WindowsFormsApp_04_condition
                 textBox_input.Text = "false";
             }
 
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            string ins = textBox_input2.Text;
+
+            if (Enum.TryParse(ins, true, out Days pickD))
+            {
+                switch (pickD)
+                {
+                    case Days.Monday:
+                        textBox_output.Text = "월";
+                        break;
+                    case Days.Tuesday:
+                        textBox_output.Text = "화";
+                        break;
+                    case Days.Wednesday:
+                        textBox_output.Text = "수";
+                        break;
+                    case Days.Thursday:
+                        textBox_output.Text = "목";
+                        break;
+                    case Days.Friday:
+                        textBox_output.Text = "금";
+                        break;
+                    case Days.Saturday:
+                        textBox_output.Text = "토";
+                        break;
+                    case Days.Sunday:
+                        textBox_output.Text = "일";
+                        break;
+                }
+            }
+            else
+            {
+                textBox_output.Text = "???";
+            }
         }
     }
 }
