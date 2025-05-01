@@ -69,7 +69,65 @@ namespace WindowsFormsApp_04_condition
              *   textBox_result.Text = "패배";
              */
             #endregion
+
+            #region goto 점프문
+            /*
+             * goto
+             * ㄴ 특정한 라벨로 점프해서 코드를 실행하도록 하는 명령문(제어문)
+             * ㄴ 코드 순서를 무시하고 지정한 위치로 순간이동함
+             * ㄴ 되도록 사용 권장 x
+             * ㄴ 특정 상황에서 빠르게 탈출, 중첩 반복문 빠져나갈 때 사용
+             * - 가독성 저하/ 유지보수 어려움/ 코드 흐름에 혼란
+             */
+
+            int selection = 0;
+            textBox_print.Text += "Start \r\n";
+
+        //#2 이동할 어딘가에 라벨 생성
+        //ㄴ 라벨이름:
+        //ㄴ 변수처럼 지정 가능(아무거나)
+        Location:
+            textBox_print.Text += "Location \r\n";
+
+            if (selection == 0)
+            {
+                textBox_print.Text += "if문 안\r\n";
+
+                selection = 1;
+                //#1 goto 라벨이름;
+                goto Location;
+            }
+
+            //goto & switch
+            //switch문에서 goto case를 쓰는 목적?
+            //ㄴ 여러 case에서 같은 코드를 실행해야 할 때, 중복 없이 깔끔하게 처리 가능
+
+            CoffeeMenu choice = CoffeeMenu.WithIceCream; //2
+
+            switch (choice)
+            {
+                case CoffeeMenu.Plain:
+                    textBox_print.Text += "Coffee";
+                    break;
+                case CoffeeMenu.WithMilk:
+                    textBox_print.Text += "Milk-";
+                    goto case CoffeeMenu.Plain;
+                case CoffeeMenu.WithIceCream:
+                    textBox_print.Text += "IceCream-";
+                    goto case CoffeeMenu.Plain;
+            }
+            //IceCream-Coffee
         }
+
+            enum CoffeeMenu
+            {
+                Plain,
+                WithMilk,
+                WithIceCream
+            }
+
+            #endregion
+        
         #region #1-2 실습 if문에 사용되는 함수
         bool CoinMatch(bool type)
         {
